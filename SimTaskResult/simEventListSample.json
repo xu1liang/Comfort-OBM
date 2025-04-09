@@ -1,0 +1,34 @@
+{
+    "event_id": "66168aeba61a1e4ff4ed699d",
+    "item_id": "67f5f21cd9d72ab527bfdd78",
+    "event_run_id": "1a80fc0ed7600000",
+    "bag_name": "PL171717_event_all_time_event_20240410-204919_0",
+    "bag_url": "https://simulation.momenta.works/portal/task/67f5e29fd7c5690104005ee5/report/simulated_bag",
+    "scenario_name": "PL171717_event_all_time_event_20240410-204919_0",
+    "scenario_url": "",
+    "result_type": 0,
+    "message": "",
+    "pass": "True",
+    "data_check_pass": "N/A",
+    "mviz_result": {
+        "base_url": "https://mviz.momenta.works/player/v5/?meta=https%3A%2F%2Fsimulation.momenta.works%2Fportal%2Ftask%2F67f5e29fd7c5690104005ee5%2Freport%2Fsim_mviz_meta",
+        "compare_url": "https://mviz.momenta.works/multiplayer/v5/?left=https%3A%2F%2Fess.momenta.works%2Fapi%2Fv1%2Fscenario%2F67ce9c158c3992ce14b7e2b4%2Fmviz-meta&right=https%3A%2F%2Fsimulation.momenta.works%2Fportal%2Ftask%2F67f5e29fd7c5690104005ee5%2Freport%2Fsim_mviz_meta"
+    },
+    "failed_checkers": null,
+    "passed_checkers": [
+        "DistanceTask",
+        "Info",
+        "dd_sudden_turn"
+    ],
+    "checker_result_url": "/task/67f5e29fd7c5690104005ee5/report/checker_result/1a80fc0ed7600000",
+    "run_pod_yaml_url": "",
+    "run_pod_log_url": "",
+    "run_module_log_url": "",
+    "core_dump_url": "",
+    "back_trace_url": "",
+    "geo_viz_url": "",
+    "data_check_result_url": "",
+    "extract_file_url": "",
+    "category": "Success",
+    "error_stage": ""
+}
