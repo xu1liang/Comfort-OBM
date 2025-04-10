@@ -1,0 +1,170 @@
+{
+    "clang-format.executable": "/usr/bin/clang-format-5.0",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "cmakeFormat.exePath": "/opt/conda/bin/cmake-format",
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.clang_format_sortIncludes": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "clangd.arguments": [
+        "--background-index",
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "-j=12",
+        "--query-driver=/usr/bin/clang++",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--header-insertion=iwyu",
+        "--pch-storage=disk"
+    ],
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true,
+        "rules": {
+            "parameter": "#306b72",
+            "class": {
+                "fontStyle": "bold",
+                "foreground": "#729de3"
+            },
+            "type.fileScope": {
+                "fontStyle": "bold",
+                "foreground": "#729de3"
+            },
+            // for auto
+            "type": {
+                "fontStyle": "bold",
+                "foreground": "#729de3"
+            },
+            "function": {
+                "foreground": "#e5b124"
+            },
+            "typeParameter": {
+                "foreground": "#729de3",
+                "fontStyle": "italic bold",
+            },
+            "variable": "#26cdca",
+            "variable.static": {
+                "foreground": "#8f5daf",
+                "fontStyle": "bold"
+            },
+            "enum": {
+                "fontStyle": "bold",
+                "foreground": "#729de3"
+            },
+            "enumMember": "#397797",
+            "macro": {
+                "foreground": "#8f5daf",
+                "fontStyle": "bold"
+            },
+            "method": {
+                "foreground": "#e5b124",
+                "fontStyle": "underline"
+            },
+            // 只读量加粗
+            "*.readonly": {
+                "fontStyle": "bold"
+            },
+            // 只读量等效为宏
+            "*.fileScope": {
+                "foreground": "#8f5daf",
+                "fontStyle": "bold"
+            },
+            "comment": "#505050",
+            "namespace": {
+                "foreground": "#00d780",
+                "fontStyle": "bold"
+            },
+            "property": {
+                "foreground": "#808688",
+                "fontStyle": "underline"
+            },
+        }
+    },
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "files.associations": {
+        "*.inc": "cpp",
+        "iostream": "cpp",
+        "regex": "cpp",
+        "stdexcept": "cpp",
+        "memory": "cpp",
+        "any": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "cctype": "cpp",
+        "cfenv": "cpp",
+        "chrono": "cpp",
+        "cinttypes": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "codecvt": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "ratio": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "initializer_list": "cpp",
+        "iomanip": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "mutex": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp",
+        "core": "cpp",
+        "eigen2support": "cpp",
+        "specialfunctions": "cpp",
+        "sparsecore": "cpp",
+        "orderingmethods": "cpp"
+    },
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "python.analysis.extraPaths": [
+        "./jupyter_pybind/notebooks/lib"
+    ]
+}
