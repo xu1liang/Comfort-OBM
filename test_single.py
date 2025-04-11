@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import time
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
 import random
 import argparse
-from test import DrivingClassifier, DrivingDataset, prepare_time_series_data  # 从训练脚本导入
+from test import (
+    DrivingClassifier,
+    DrivingDataset,
+    prepare_time_series_data,
+)  # 从训练脚本导入
 
 # 设备配置
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
@@ -16,7 +19,9 @@ print(f"Using device: {device}")
 def load_model(model_path, input_dim=9):
     """加载与训练脚本完全兼容的模型"""
     # 注意：这里不再重新定义模型，直接使用训练脚本的类
-    model = DrivingClassifier(input_dim=input_dim, d_model=input_dim * 20, nhead=input_dim, num_layers=2).to(device)
+    model = DrivingClassifier(
+        input_dim=input_dim, d_model=input_dim * 20, nhead=input_dim, num_layers=2
+    ).to(device)
     state_dict = torch.load(model_path, map_location=device)
 
     # 调试信息
@@ -33,7 +38,7 @@ def prepare_test_data():
     """准备测试数据（与训练脚本相同方式）"""
     train_scenarios = ["高速非变道晃动Good", "高速非变道晃动Hard"]
 
-    test_scenarios = ["猛打场景库Good", "猛打场景库Hard"]
+    test_scenarios = ["高速非变道晃动Good", "高速非变道晃动Hard"]
 
     # 使用训练脚本的函数准备数据
     train_sequences, train_labels, test_sequences, test_labels, input_dim, name_list = (
@@ -47,11 +52,17 @@ def predict_and_visualize(model, sequence, sample_name):
     """预测可视化函数（增加特征绘图）"""
     # 特征名称映射
     feature_names = [
-        "ego_v", "ego_lat_acc", "ego_lat_jerk",
-        "ego_kappa", "ego_dkappa", "ego_steer_angle",
-        "ego_steer_angle_rate", "ego_w", "ego_dw"
+        "v",
+        "lat_acc",
+        "lat_jerk",
+        "kappa",
+        "dkappa",
+        "steer_angle",
+        "steer_angle_rate",
+        "w",
+        "dw",
     ]
-    
+
     # 准备输入数据
     inputs = torch.FloatTensor(sequence).unsqueeze(0).to(device)
     masks = torch.ones(1, sequence.shape[0], dtype=torch.float32).to(device)
@@ -64,22 +75,26 @@ def predict_and_visualize(model, sequence, sample_name):
 
     # 创建画布
     plt.figure(figsize=(15, 8))
-    
+
     # 1. 绘制转向角曲线
     plt.subplot(3, 1, 1)
     steer_angle = sequence[:, 5]  # 第5个特征是ego_steer_angle
     time_steps = np.arange(len(steer_angle)) * 0.1  # 假设每0.1秒一个数据点
-    
-    
-    features_to_plot = [2,]
-    colors = ['b']
-    
+
+    features_to_plot = [
+        2,
+    ]
+    colors = ["b"]
+
     for idx, color in zip(features_to_plot, colors):
-        plt.plot(time_steps, sequence[:, idx],
-                color=color,
-                label=feature_names[idx],
-                alpha=0.7)
-    
+        plt.plot(
+            time_steps,
+            sequence[:, idx],
+            color=color,
+            label=feature_names[idx],
+            alpha=0.7,
+        )
+
     plt.title("Key Features")
     plt.xlabel("Time (s)")
     plt.ylabel("Normalized Value")
@@ -88,38 +103,52 @@ def predict_and_visualize(model, sequence, sample_name):
 
     # 2. 绘制其他关键特征
     plt.subplot(3, 1, 2)
-    features_to_plot = [5,]
-    colors = ['g',]
-    
+    features_to_plot = [
+        5,
+    ]
+    colors = [
+        "g",
+    ]
+
     for idx, color in zip(features_to_plot, colors):
-        plt.plot(time_steps, sequence[:, idx],
-                color=color,
-                label=feature_names[idx],
-                alpha=0.7)
-    
+        plt.plot(
+            time_steps,
+            sequence[:, idx],
+            color=color,
+            label=feature_names[idx],
+            alpha=0.7,
+        )
+
     plt.title("Key Features")
     plt.xlabel("Time (s)")
     plt.ylabel("Normalized Value")
     plt.legend()
     plt.grid(True)
-    
+
     # 2. 绘制其他关键特征
     plt.subplot(3, 1, 3)
-    features_to_plot = [6,]
-    colors = ['r',]
-    
+    features_to_plot = [
+        6,
+    ]
+    colors = [
+        "r",
+    ]
+
     for idx, color in zip(features_to_plot, colors):
-        plt.plot(time_steps, sequence[:, idx],
-                color=color,
-                label=feature_names[idx],
-                alpha=0.7)
-    
+        plt.plot(
+            time_steps,
+            sequence[:, idx],
+            color=color,
+            label=feature_names[idx],
+            alpha=0.7,
+        )
+
     plt.title("Key Features")
     plt.xlabel("Time (s)")
     plt.ylabel("Normalized Value")
     plt.legend()
     plt.grid(True)
-    
+
     plt.tight_layout()
     plt.show(block=False)
 
@@ -132,8 +161,8 @@ def predict_and_visualize(model, sequence, sample_name):
             "max": float(steer_angle.max()),
             "min": float(steer_angle.min()),
             "mean": float(steer_angle.mean()),
-            "std": float(steer_angle.std())
-        }
+            "std": float(steer_angle.std()),
+        },
     }
 
 
